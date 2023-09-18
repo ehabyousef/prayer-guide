@@ -83,7 +83,6 @@ const Home = () => {
         { key: 'Maghrib', displayName: 'المغرب' },
         { key: 'Isha', displayName: 'العشاء' },
     ]
-
     const counterTimer = () => {
         let prayerIndex = 2;
         const timeNow = moment();
