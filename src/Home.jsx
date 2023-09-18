@@ -110,7 +110,7 @@ const Home = () => {
             remainingTime = totaldiff
         }
         const durationRemaining = moment.duration(remainingTime)
-        setremainingtime(`${durationRemaining.hours()} : ${durationRemaining.minutes()} : ${durationRemaining.seconds()}`)
+        setremainingtime(`${durationRemaining.seconds()} : ${durationRemaining.minutes()}  : ${durationRemaining.hours()}`)
         console.log(durationRemaining);
         console.log(remainingtime);
     }
@@ -120,8 +120,14 @@ const Home = () => {
         setdate(moment().format("MMM Do YYYY | h:mm a"));
     }, [cityValue, countryValue]);
     useEffect(() => {
-        counterTimer();
-    }, [timings, selectedCity]);
+        const interval = setInterval(() => {
+            counterTimer();
+        }, 1000);
+        return () => {
+            clearInterval(interval)
+        }
+    }, [timings, selectedCity])
+
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
