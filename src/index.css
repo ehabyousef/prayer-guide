@@ -11,6 +11,3 @@ body {
   outline: 0;
   box-shadow: none;
 }
-option:focus-visible {
-  background-color: red !important;
-}
