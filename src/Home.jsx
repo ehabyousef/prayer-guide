@@ -13,7 +13,7 @@ const Home = () => {
     const [date, setdate] = useState("")
     const [nextPrayer, setnextPrayer] = useState(1)
     const [remainingtime, setremainingtime] = useState("")
-    const [loading, setloading] = useState(false)
+    const [loading, setloading] = useState(true)
     const avalibleCities = [{
         dispName: 'القاهرة',
         apiName: "Cairo",
@@ -140,7 +140,7 @@ const Home = () => {
                         </div>
                         <div className="time text-white d-flex flex-column gap-3">
                             <h5>متبقى حتى صلاة {prayerArray[nextPrayer].displayName}</h5>
-                            <h2>{remainingtime}</h2>
+                            <h2>{loading ? <div className="lds-facebook"><div></div><div></div><div></div></div> : { remainingtime }}</h2>
                         </div>
                         <div className="select">
                             <select
