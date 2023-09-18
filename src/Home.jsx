@@ -159,7 +159,7 @@ const Home = () => {
                     </div>
                 </div>
                 <hr />
-                <div className="row row-cols-1 row-cols-md-5 g-2 my-4">
+                <div className="row row-cols-1 row-cols-md-5 g-2 my-4 p-2">
                     <div className="col">
                         <div className="card p-0" style={{ height: "100%" }}>
                             <img src="../public/image/fajr.jpg" className="card-img-top" alt="..." style={{ height: "180px" }} />
