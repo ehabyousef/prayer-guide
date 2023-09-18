@@ -78,8 +78,13 @@ const Home = () => {
         const date = moment()
         getApiTimings(countryValue, cityValue);
         setdate(moment().format("MMM Do YYYY | h:mm a"))
-        console.log(date);
+        // console.log(date);
+        return () => {
+
+        }
     }, [cityValue, countryValue])
+
+    
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
