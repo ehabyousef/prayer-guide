@@ -21,7 +21,7 @@ const Home = () => {
             .then(function (response) {
                 settimings(response.data.data.timings)
                 let date = response.data.data.date.readable;
-               
+
             })
             .catch(function (error) {
                 console.log(error);
@@ -60,7 +60,7 @@ const Home = () => {
     ]
 
     const handleCityName = (e) => {
-       
+
         const cityObject = avalibleCities.find((city) => {
             return city.apiName == e.target.value
         })
@@ -73,6 +73,7 @@ const Home = () => {
     }
 
     useEffect(() => {
+        const t = moment()
         getApiTimings(countryValue, cityValue);
     }, [cityValue, countryValue])
 
