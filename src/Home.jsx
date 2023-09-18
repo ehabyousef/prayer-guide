@@ -11,24 +11,6 @@ const Home = () => {
     const [cityValue, setcityValue] = useState("cairo")
     const [countryValue, setcountryValue] = useState("EG")
     const [date, setdate] = useState("")
-    async function getApiTimings(country, city) {
-        let params = {
-            country: country,
-            city: city,
-        };
-        await axios
-            .get("http://api.aladhan.com/v1/timingsByCity", {
-                params: params,
-            })
-            .then(function (response) {
-                settimings(response.data.data.timings)
-                let date = response.data.data.date.readable;
-
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
     const avalibleCities = [{
         dispName: 'القاهرة',
         apiName: "Cairo",
@@ -60,7 +42,24 @@ const Home = () => {
         country: "Algeria",
     },
     ]
+    async function getApiTimings(country, city) {
+        let params = {
+            country: country,
+            city: city,
+        };
+        await axios
+            .get("http://api.aladhan.com/v1/timingsByCity", {
+                params: params,
+            })
+            .then(function (response) {
+                settimings(response.data.data.timings)
+                let date = response.data.data.date.readable;
 
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
     const handleCityName = (e) => {
 
         const cityObject = avalibleCities.find((city) => {
@@ -80,14 +79,19 @@ const Home = () => {
         setdate(moment().format("MMM Do YYYY | h:mm a"))
         // console.log(date);
     }, [cityValue, countryValue])
-
+    const counterTimer = () => {
+        const timeNow = moment()
+        let nextPrayer = null
+        const Isha = timings.Isha
+        const IshaMoment = moment(Isha, " hh: mm")
+        console.log(timeNow.isBefore(IshaMoment));
+    }
+    counterTimer()
     useEffect(() => {
-
-      return () => {
-        
-      }
+        return () => {
+        }
     }, [])
-    
+
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
