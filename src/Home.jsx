@@ -55,14 +55,12 @@ const Home = () => {
             })
             .then(function (response) {
                 settimings(response.data.data.timings)
-
             })
             .catch(function (error) {
                 console.log(error);
             });
     }
     const handleCityName = (e) => {
-
         const cityObject = avalibleCities.find((city) => {
             return city.apiName == e.target.value
         })
@@ -116,11 +114,14 @@ const Home = () => {
         console.log(durationRemaining);
         console.log(remainingtime);
     }
-    counterTimer();
     useEffect(() => {
         getApiTimings(countryValue, cityValue);
+        setremainingtime("")
         setdate(moment().format("MMM Do YYYY | h:mm a"));
     }, [cityValue, countryValue]);
+    useEffect(() => {
+        counterTimer();
+    }, [timings, selectedCity]);
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
@@ -132,7 +133,7 @@ const Home = () => {
                         </div>
                         <div className="time text-white d-flex flex-column gap-3">
                             <h5>متبقى حتى صلاة {prayerArray[nextPrayer].displayName}</h5>
-                            <h2>00:20:12</h2>
+                            <h2>{remainingtime}</h2>
                         </div>
                         <div className="select">
                             <select
