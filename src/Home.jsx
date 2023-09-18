@@ -9,6 +9,7 @@ const Home = () => {
     const [selectedCity, setselectedCity] = useState("القاهرة")
     const [cityValue, setcityValue] = useState("cairo")
     const [countryValue, setcountryValue] = useState("EG")
+    const [date, setdate] = useState()
     async function getApiTimings(country, city) {
         let params = {
             country: country,
