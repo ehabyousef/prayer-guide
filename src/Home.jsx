@@ -13,7 +13,7 @@ const Home = () => {
     const [date, setdate] = useState("")
     const [nextPrayer, setnextPrayer] = useState(1)
     const [remainingtime, setremainingtime] = useState("")
-    const [loading, setloading] = useState(true)
+    const [isLoading, setisLoading] = useState(true)
     const avalibleCities = [{
         dispName: 'القاهرة',
         apiName: "Cairo",
@@ -57,9 +57,11 @@ const Home = () => {
             .then(function (response) {
                 settimings(response.data.data.timings)
                 counterTimer()
+                setisLoading(false)
             })
             .catch(function (error) {
                 console.log(error);
+                setisLoading(false)
             });
     }
     const handleCityName = (e) => {
@@ -126,7 +128,6 @@ const Home = () => {
     }, [timings, selectedCity])
     useEffect(() => {
         getApiTimings(countryValue, cityValue);
-
         setdate(moment().format("MMM Do YYYY | h:mm a"));
     }, [cityValue, countryValue]);
     return (
@@ -140,7 +141,7 @@ const Home = () => {
                         </div>
                         <div className="time text-white d-flex flex-column gap-3">
                             <h5>متبقى حتى صلاة {prayerArray[nextPrayer].displayName}</h5>
-                            <h2>{loading ? <div className="lds-facebook"><div></div><div></div><div></div></div> : { remainingtime }}</h2>
+                            <h2>{isLoading ? <div className="lds-facebook"><div></div><div></div><div></div></div> : remainingtime}</h2>
                         </div>
                         <div className="select">
                             <select
