@@ -100,6 +100,9 @@ const Home = () => {
             prayerIndex = 0
         }
         setnextPrayer(prayerIndex)
+        const nextPrayerobject = prayerArray[prayerIndex]
+        const nextPrayerTimer = timings[nextPrayerobject.key]
+        console.log(nextPrayerTimer);
     }
     useEffect(() => {
         counterTimer()
