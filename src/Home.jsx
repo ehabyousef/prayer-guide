@@ -74,10 +74,8 @@ const Home = () => {
     }
 
     useEffect(() => {
-        const date = moment()
         getApiTimings(countryValue, cityValue);
         setdate(moment().format("MMM Do YYYY | h:mm a"))
-        // console.log(date);
     }, [cityValue, countryValue])
     const counterTimer = () => {
         const timeNow = moment()
