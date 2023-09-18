@@ -20,6 +20,11 @@ const Home = () => {
             })
             .then(function (response) {
                 settimings(response.data.data.timings)
+                let date = response.data.data.date.readable;
+                // let weekday = response.data.data.date.hijri.weekday.ar;
+                // const fulldate = `${weekday}  ${date}`;
+                // console.log(date);
+                // console.log(weekday);
             })
             .catch(function (error) {
                 console.log(error);
@@ -58,6 +63,7 @@ const Home = () => {
     ]
 
     const handleCityName = (e) => {
+        // console.log(e.target.value);
         const cityObject = avalibleCities.find((city) => {
             return city.apiName == e.target.value
         })
