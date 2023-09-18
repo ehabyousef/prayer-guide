@@ -84,7 +84,7 @@ const Home = () => {
         }
     }, [cityValue, countryValue])
 
-    
+
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
