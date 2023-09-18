@@ -79,12 +79,15 @@ const Home = () => {
         getApiTimings(countryValue, cityValue);
         setdate(moment().format("MMM Do YYYY | h:mm a"))
         // console.log(date);
-        return () => {
-
-        }
     }, [cityValue, countryValue])
 
+    useEffect(() => {
 
+      return () => {
+        
+      }
+    }, [])
+    
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
