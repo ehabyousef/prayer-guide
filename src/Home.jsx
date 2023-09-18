@@ -1,5 +1,5 @@
 import axios from "axios";
-import moment from "moment/moment";
+import moment, { duration } from "moment/moment";
 import 'moment/locale/ar';
 import { useEffect, useState } from "react";
 
@@ -102,7 +102,17 @@ const Home = () => {
         setnextPrayer(prayerIndex);
         const nextPrayerobject = prayerArray[prayerIndex];
         const nextPrayerTimer = timings[nextPrayerobject.key];
-        console.log(nextPrayerTimer);
+        const nextPrayerTimeMoment = moment(nextPrayerTimer, "hh:mm")
+        let remainingTime = moment(nextPrayer, "hh:mm").diff(timeNow)
+        if (remainingTime < 0) {
+            const midNight = moment("23:59:59", "hh:mm:ss").diff(timeNow)
+            const fajrToMidNight = nextPrayerTimeMoment.diff(moment("00:00:00", "hh:mm:ss"))
+            const totaldiff = midNight + fajrToMidNight
+            remainingTime = totaldiff
+        }
+        const durationRemaining = moment.duration(remainingTime)
+        console.log(durationRemaining);
+        console.log(durationRemaining.hours(), durationRemaining.minutes(), durationRemaining.seconds());
     }
     useEffect(() => {
         counterTimer();
