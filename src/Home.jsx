@@ -101,8 +101,8 @@ const Home = () => {
         }
         setnextPrayer(prayerIndex)
     }
-    counterTimer()
     useEffect(() => {
+        counterTimer()
         getApiTimings(countryValue, cityValue);
         setdate(moment().format("MMM Do YYYY | h:mm a"))
     }, [cityValue, countryValue])
