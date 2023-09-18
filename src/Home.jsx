@@ -32,14 +32,14 @@ const Home = () => {
         country: "MA",
     },
     {
-        dispName: ' مكة',
+        dispName: 'مكة',
         apiName: "Makah",
         country: "SA",
     },
     {
-        dispName: ' الجزائر',
+        dispName: 'الجزائر',
         apiName: "Algiers",
-        country: "Algeria",
+        country: "DZ",
     },
     ]
     async function getApiTimings(country, city) {
@@ -66,7 +66,7 @@ const Home = () => {
             return city.apiName == e.target.value
         })
         const countryObject = avalibleCities.find((city) => {
-            return city.country == e.target.value
+            return city.apiName == e.target.value
         })
         setselectedCity(cityObject.dispName)
         setcityValue(e.target.value)
