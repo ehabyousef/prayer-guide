@@ -1,5 +1,6 @@
 import axios from "axios";
 import moment from "moment/moment";
+import 'moment/locale/ar';
 import { useEffect, useState } from "react";
 
 
@@ -76,16 +77,16 @@ const Home = () => {
     useEffect(() => {
         const date = moment()
         getApiTimings(countryValue, cityValue);
-        setdate(moment().format('MMMM Do YYYY, h:mm:ss a'))
+        setdate(moment().format("MMM Do YYYY | h:mm a"))
+        console.log(date);
     }, [cityValue, countryValue])
-    console.log(moment.locale());
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
                 <div className="row h-50">
                     <div className="d-flex flex-column flex-md-row gap-3 justify-content-evenly  align-items-md-end">
                         <div className="city text-white d-flex flex-column gap-3">
-                            <h4 id="date">2023 9 sep</h4>
+                            <h4 id="date">{date}</h4>
                             <h3 id="city-name">{selectedCity}</h3>
                         </div>
                         <div className="time text-white d-flex flex-column gap-3">
