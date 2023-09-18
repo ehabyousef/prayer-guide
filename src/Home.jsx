@@ -9,7 +9,7 @@ const Home = () => {
     const [selectedCity, setselectedCity] = useState("القاهرة")
     const [cityValue, setcityValue] = useState("cairo")
     const [countryValue, setcountryValue] = useState("EG")
-    const [date, setdate] = useState()
+    const [date, setdate] = useState("")
     async function getApiTimings(country, city) {
         let params = {
             country: country,
@@ -74,10 +74,11 @@ const Home = () => {
     }
 
     useEffect(() => {
-        const t = moment()
+        const date = moment()
         getApiTimings(countryValue, cityValue);
+        setdate(moment().format('MMMM Do YYYY, h:mm:ss a'))
     }, [cityValue, countryValue])
-
+    console.log(moment.locale());
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
