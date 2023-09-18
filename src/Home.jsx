@@ -11,6 +11,7 @@ const Home = () => {
     const [cityValue, setcityValue] = useState("cairo")
     const [countryValue, setcountryValue] = useState("EG")
     const [date, setdate] = useState("")
+    const [nextPrayer, setnextPrayer] = useState(2)
     const avalibleCities = [{
         dispName: 'القاهرة',
         apiName: "Cairo",
@@ -73,36 +74,38 @@ const Home = () => {
         setcountryValue(countryObject.country)
     }
 
+    const prayerArray = [
+        { key: 'Fajr', displayName: 'الفجر' },
+        { key: 'Dhuhr', displayName: 'الظهر' },
+        { key: 'Asr', displayName: 'العصر' },
+        { key: 'Maghrib', displayName: 'المغرب' },
+        { key: 'Isha', displayName: 'العشاء' },
+    ]
+    const counterTimer = () => {
+        let prayerIndex = 2
+        const timeNow = moment()
+
+        if (timeNow.isBefore(moment(timings.Fajr, " hh: mm")) && timeNow.isAfter(moment(timings.Dhuhr, " hh: mm"))) {
+            prayerIndex = 1
+        } else if (timeNow.isBefore(moment(timings.Dhuhr, " hh: mm")) && timeNow.isAfter(moment(timings.Asr, " hh: mm"))) {
+            prayerIndex = 2
+        }
+        else if (timeNow.isBefore(moment(timings.Asr, " hh: mm")) && timeNow.isAfter(moment(timings.Maghrib, " hh: mm"))) {
+            prayerIndex = 3
+        }
+        else if (timeNow.isBefore(moment(timings.Maghrib, " hh: mm")) && timeNow.isAfter(moment(timings.Isha, " hh: mm"))) {
+            prayerIndex = 4
+        }
+        else {
+            prayerIndex = 0
+        }
+        setnextPrayer(prayerIndex)
+    }
+    counterTimer()
     useEffect(() => {
         getApiTimings(countryValue, cityValue);
         setdate(moment().format("MMM Do YYYY | h:mm a"))
     }, [cityValue, countryValue])
-    const counterTimer = () => {
-        const timeNow = moment()
-        let nextPrayer = null
-        const Isha = timings.Isha
-        const IshaMoment = moment(Isha, " hh: mm")
-        if (timeNow.isBefore(moment(timings.Fajr, " hh: mm")) && timeNow.isAfter(moment(timings.Dhuhr, " hh: mm"))) {
-            console.log("next prayer is duhr");
-        } else if (timeNow.isBefore(moment(timings.Dhuhr, " hh: mm")) && timeNow.isAfter(moment(timings.Asr, " hh: mm"))) {
-            console.log("next prayer is asr");
-        }
-        else if (timeNow.isBefore(moment(timings.Asr, " hh: mm")) && timeNow.isAfter(moment(timings.Maghrib, " hh: mm"))) {
-            console.log("next prayer is Maghrib");
-        }
-        else if (timeNow.isBefore(moment(timings.Maghrib, " hh: mm")) && timeNow.isAfter(moment(timings.Isha, " hh: mm"))) {
-            console.log("next prayer is Isha");
-        }
-        else if (timeNow.isBefore(moment(timings.Isha, " hh: mm")) && timeNow.isAfter(moment(timings.Fajr, " hh: mm"))) {
-            console.log("next prayer is Fajr");
-        }
-    }
-    counterTimer()
-    useEffect(() => {
-        return () => {
-        }
-    }, [])
-
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
@@ -113,7 +116,7 @@ const Home = () => {
                             <h3 id="city-name">{selectedCity}</h3>
                         </div>
                         <div className="time text-white d-flex flex-column gap-3">
-                            <h5>متبقى حتى صلاة الفجر</h5>
+                            <h5>متبقى حتى صلاة {prayerArray[nextPrayer].displayName}</h5>
                             <h2>00:20:12</h2>
                         </div>
                         <div className="select">
