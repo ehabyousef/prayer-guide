@@ -1,5 +1,5 @@
 import axios from "axios";
-import moment, { duration } from "moment/moment";
+import moment from "moment/moment";
 import 'moment/locale/ar';
 import { useEffect, useState } from "react";
 
