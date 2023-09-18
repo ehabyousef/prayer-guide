@@ -12,6 +12,7 @@ const Home = () => {
     const [countryValue, setcountryValue] = useState("EG")
     const [date, setdate] = useState("")
     const [nextPrayer, setnextPrayer] = useState(1)
+    const [remainingtime, setremainingtime] = useState("")
     const avalibleCities = [{
         dispName: 'القاهرة',
         apiName: "Cairo",
@@ -111,11 +112,12 @@ const Home = () => {
             remainingTime = totaldiff
         }
         const durationRemaining = moment.duration(remainingTime)
+        setremainingtime(`${durationRemaining.hours()} : ${durationRemaining.minutes()} : ${durationRemaining.seconds()}`)
         console.log(durationRemaining);
-        console.log(durationRemaining.hours(), durationRemaining.minutes(), durationRemaining.seconds());
+        console.log(remainingtime);
     }
+    counterTimer();
     useEffect(() => {
-        counterTimer();
         getApiTimings(countryValue, cityValue);
         setdate(moment().format("MMM Do YYYY | h:mm a"));
     }, [cityValue, countryValue]);
