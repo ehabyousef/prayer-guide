@@ -8,11 +8,12 @@ const Home = () => {
 
     const [timings, settimings] = useState([])
     const [selectedCity, setselectedCity] = useState("القاهرة")
-    const [cityValue, setcityValue] = useState("cairo")
     const [countryValue, setcountryValue] = useState("EG")
+    const [cityValue, setcityValue] = useState("Cairo")
     const [date, setdate] = useState("")
     const [nextPrayer, setnextPrayer] = useState(1)
     const [remainingtime, setremainingtime] = useState("")
+    const [loading, setloading] = useState(false)
     const avalibleCities = [{
         dispName: 'القاهرة',
         apiName: "Cairo",
@@ -55,6 +56,7 @@ const Home = () => {
             })
             .then(function (response) {
                 settimings(response.data.data.timings)
+                counterTimer()
             })
             .catch(function (error) {
                 console.log(error);
@@ -115,11 +117,6 @@ const Home = () => {
         console.log(remainingtime);
     }
     useEffect(() => {
-        getApiTimings(countryValue, cityValue);
-        setremainingtime("")
-        setdate(moment().format("MMM Do YYYY | h:mm a"));
-    }, [cityValue, countryValue]);
-    useEffect(() => {
         const interval = setInterval(() => {
             counterTimer();
         }, 1000);
@@ -127,7 +124,11 @@ const Home = () => {
             clearInterval(interval)
         }
     }, [timings, selectedCity])
+    useEffect(() => {
+        getApiTimings(countryValue, cityValue);
 
+        setdate(moment().format("MMM Do YYYY | h:mm a"));
+    }, [cityValue, countryValue]);
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
