@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
 
-    const [timings, settimings] = useState({})
+    const [timings, settimings] = useState([])
     const [selectedCity, setselectedCity] = useState("القاهرة")
     const [cityValue, setcityValue] = useState("cairo")
     const [countryValue, setcountryValue] = useState("EG")
     const [date, setdate] = useState("")
-    const [nextPrayer, setnextPrayer] = useState(2)
+    const [nextPrayer, setnextPrayer] = useState(1)
     const avalibleCities = [{
         dispName: 'القاهرة',
         apiName: "Cairo",
@@ -54,8 +54,6 @@ const Home = () => {
             })
             .then(function (response) {
                 settimings(response.data.data.timings)
-                let date = response.data.data.date.readable;
-
             })
             .catch(function (error) {
                 console.log(error);
@@ -81,34 +79,36 @@ const Home = () => {
         { key: 'Maghrib', displayName: 'المغرب' },
         { key: 'Isha', displayName: 'العشاء' },
     ]
-    const counterTimer = () => {
-        let prayerIndex = 2
-        const timeNow = moment()
 
-        if (timeNow.isBefore(moment(timings.Fajr, " hh: mm")) && timeNow.isAfter(moment(timings.Dhuhr, " hh: mm"))) {
-            prayerIndex = 1
-        } else if (timeNow.isBefore(moment(timings.Dhuhr, " hh: mm")) && timeNow.isAfter(moment(timings.Asr, " hh: mm"))) {
-            prayerIndex = 2
+    const counterTimer = () => {
+        let prayerIndex = 2;
+        const timeNow = moment();
+
+        if (timeNow.isBefore(moment(timings.Fajr, "hh:mm")) && timeNow.isAfter(moment(timings.Dhuhr, "hh:mm"))) {
+            prayerIndex = 1;
+        } else if (timeNow.isBefore(moment(timings.Dhuhr, "hh:mm")) && timeNow.isAfter(moment(timings.Asr, "hh:mm"))) {
+            prayerIndex = 2;
         }
-        else if (timeNow.isBefore(moment(timings.Asr, " hh: mm")) && timeNow.isAfter(moment(timings.Maghrib, " hh: mm"))) {
-            prayerIndex = 3
+        else if (timeNow.isBefore(moment(timings.Asr, "hh:mm")) && timeNow.isAfter(moment(timings.Maghrib, "hh:mm"))) {
+            prayerIndex = 3;
         }
-        else if (timeNow.isBefore(moment(timings.Maghrib, " hh: mm")) && timeNow.isAfter(moment(timings.Isha, " hh: mm"))) {
-            prayerIndex = 4
+        else if (timeNow.isBefore(moment(timings.Maghrib, "hh:mm")) && timeNow.isAfter(moment(timings.Isha, "hh:mm"))) {
+            prayerIndex = 4;
         }
         else {
-            prayerIndex = 0
+            prayerIndex = 0;
         }
-        setnextPrayer(prayerIndex)
-        const nextPrayerobject = prayerArray[prayerIndex]
-        const nextPrayerTimer = timings[nextPrayerobject.key]
+        setnextPrayer(prayerIndex);
+        const nextPrayerobject = prayerArray[prayerIndex];
+        const nextPrayerTimer = timings[nextPrayerobject.key];
         console.log(nextPrayerTimer);
     }
+
     useEffect(() => {
-        counterTimer()
+        counterTimer();
         getApiTimings(countryValue, cityValue);
-        setdate(moment().format("MMM Do YYYY | h:mm a"))
-    }, [cityValue, countryValue])
+        setdate(moment().format("MMM Do YYYY | h:mm a"));
+    }, [cityValue, countryValue]);
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
