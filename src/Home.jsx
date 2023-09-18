@@ -82,7 +82,20 @@ const Home = () => {
         let nextPrayer = null
         const Isha = timings.Isha
         const IshaMoment = moment(Isha, " hh: mm")
-        console.log(timeNow.isBefore(IshaMoment));
+        if (timeNow.isBefore(moment(timings.Fajr, " hh: mm")) && timeNow.isAfter(moment(timings.Dhuhr, " hh: mm"))) {
+            console.log("next prayer is duhr");
+        } else if (timeNow.isBefore(moment(timings.Dhuhr, " hh: mm")) && timeNow.isAfter(moment(timings.Asr, " hh: mm"))) {
+            console.log("next prayer is asr");
+        }
+        else if (timeNow.isBefore(moment(timings.Asr, " hh: mm")) && timeNow.isAfter(moment(timings.Maghrib, " hh: mm"))) {
+            console.log("next prayer is Maghrib");
+        }
+        else if (timeNow.isBefore(moment(timings.Maghrib, " hh: mm")) && timeNow.isAfter(moment(timings.Isha, " hh: mm"))) {
+            console.log("next prayer is Isha");
+        }
+        else if (timeNow.isBefore(moment(timings.Isha, " hh: mm")) && timeNow.isAfter(moment(timings.Fajr, " hh: mm"))) {
+            console.log("next prayer is Fajr");
+        }
     }
     counterTimer()
     useEffect(() => {
