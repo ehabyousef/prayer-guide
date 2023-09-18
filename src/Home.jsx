@@ -102,6 +102,7 @@ const Home = () => {
         setnextPrayer(prayerIndex);
         const nextPrayerobject = prayerArray[prayerIndex];
         const nextPrayerTime = timings[nextPrayerobject.key];
+        console.log(nextPrayerobject);
         console.log(nextPrayerTime);
     }
     useEffect(() => {
