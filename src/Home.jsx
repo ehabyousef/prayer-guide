@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
 
-    const [timings, settimings] = useState({})
+    const [timings, settimings] = useState([])
     const [selectedCity, setselectedCity] = useState("القاهرة")
     const [cityValue, setcityValue] = useState("cairo")
     const [countryValue, setcountryValue] = useState("EG")
@@ -101,14 +101,13 @@ const Home = () => {
         }
         setnextPrayer(prayerIndex);
         const nextPrayerobject = prayerArray[prayerIndex];
-        const nextPrayerTime = timings[nextPrayerobject.key];
-        console.log(nextPrayerobject);
-        console.log(nextPrayerTime);
+        const nextPrayerTimer = timings[nextPrayerobject.key];
+        console.log(nextPrayerTimer);
     }
     useEffect(() => {
+        counterTimer();
         getApiTimings(countryValue, cityValue);
         setdate(moment().format("MMM Do YYYY | h:mm a"));
-        counterTimer();
     }, [cityValue, countryValue]);
     return (
         <>
