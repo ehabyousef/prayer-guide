@@ -72,8 +72,8 @@ const Home = () => {
         setselectedCity(cityObject.dispName)
         setcityValue(e.target.value)
         setcountryValue(countryObject.country)
+        localStorage.setItem("country", countryValue)
     }
-
     const prayerArray = [
         { key: 'Fajr', displayName: 'الفجر' },
         { key: 'Dhuhr', displayName: 'الظهر' },
@@ -117,8 +117,6 @@ const Home = () => {
         }
         const durationRemaining = moment.duration(remainingTime)
         setremainingtime(`${durationRemaining.seconds()} : ${durationRemaining.minutes()}  : ${durationRemaining.hours()}`)
-        // console.log(durationRemaining);
-        // console.log(remainingtime);
     }
     useEffect(() => {
         const interval = setInterval(() => {
