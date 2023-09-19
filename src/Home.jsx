@@ -3,9 +3,7 @@ import moment from "moment/moment";
 import 'moment/locale/ar';
 import { useEffect, useState } from "react";
 
-
 const Home = () => {
-
     const [timings, settimings] = useState([])
     const [selectedCity, setselectedCity] = useState("القاهرة")
     const [countryValue, setcountryValue] = useState("EG")
@@ -164,7 +162,7 @@ const Home = () => {
                             <img src="../public/image/fajr.jpg" className="card-img-top" alt="..." style={{ height: "180px" }} />
                             <div className="card-body d-flex flex-column align-items-start">
                                 <p className="card-text fs-3">الفجر</p>
-                                <h2 id="time-fajr" className="card-title fs-1 w-100 fw-bold">{timings.Fajr}</h2>
+                                <h2 id="time-fajr" className="card-title fs-1 w-100 fw-bold">{isLoading ? <div className="lds-facebook"><div></div><div></div><div></div></div> : timings.Fajr}</h2>
                             </div>
                         </div>
                     </div>
