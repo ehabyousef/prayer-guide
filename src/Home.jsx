@@ -123,7 +123,6 @@ const Home = () => {
         }
         const durationRemaining = moment.duration(remainingTime)
         setremainingtime(`${durationRemaining.seconds()} : ${durationRemaining.minutes()}  : ${durationRemaining.hours()}`)
-
     }
     useEffect(() => {
         localStorage.setItem("selectedCity", selectedCity);
