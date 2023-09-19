@@ -138,7 +138,7 @@ const Home = () => {
         setdate(moment().format("MMM Do YYYY | h:mm a"));
         localStorage.setItem("countryvalue", countryValue);
         localStorage.setItem("cityvalue", cityValue);
-    }, [cityValue, countryValue]);
+    }, [cityValue, countryValue, getApiTimings]);
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
