@@ -12,17 +12,7 @@ const Home = () => {
     const [nextPrayer, setnextPrayer] = useState(1)
     const [remainingtime, setremainingtime] = useState("")
     const [isLoading, setisLoading] = useState(true)
-    const getLocal = () => {
-        if (localStorage.getItem("country") != null) {
-            setcountryValue(localStorage.getItem(JSON.stringify("country")))
-            setcityValue(localStorage.getItem(JSON.stringify("city")))
-            console.log(countryValue);
-        } else {
-            setcountryValue('EG')
-            setcityValue('Cairo')
-            console.log(countryValue);
-        }
-    }
+
     const avalibleCities = [{
         dispName: 'القاهرة',
         apiName: "Cairo",
