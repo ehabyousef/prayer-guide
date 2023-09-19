@@ -56,6 +56,7 @@ const Home = () => {
                 settimings(response.data.data.timings)
                 counterTimer()
                 setisLoading(false)
+                localStorage.setItem("country", countryValue)
             })
             .catch(function (error) {
                 console.log(error);
@@ -72,7 +73,7 @@ const Home = () => {
         setselectedCity(cityObject.dispName)
         setcityValue(e.target.value)
         setcountryValue(countryObject.country)
-        localStorage.setItem("country", countryValue)
+
     }
     const prayerArray = [
         { key: 'Fajr', displayName: 'الفجر' },
