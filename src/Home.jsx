@@ -84,15 +84,21 @@ const Home = () => {
     const counterTimer = () => {
         let prayerIndex = 2;
         const timeNow = moment();
-        if (timeNow.isBefore(moment(timings.Fajr, "hh:mm")) && timeNow.isAfter(moment(timings.Dhuhr, "hh:mm"))) {
+        let FajrTime = moment(timings.Fajr, "hh:mm")
+        let DhuhrTime = moment(timings.Dhuhr, "hh:mm")
+        let AsrTime = moment(timings.Asr, "hh:mm")
+        let MaghribTime = moment(timings.Maghrib, "hh:mm")
+        let IshaTime = moment(timings.Isha, "hh:mm")
+
+        if (timeNow.isBefore(DhuhrTime) && timeNow.isAfter(FajrTime)) {
             prayerIndex = 1;
-        } else if (timeNow.isBefore(moment(timings.Dhuhr, "hh:mm")) && timeNow.isAfter(moment(timings.Asr, "hh:mm"))) {
+        } else if (timeNow.isBefore(AsrTime) && timeNow.isAfter(DhuhrTime)) {
             prayerIndex = 2;
         }
-        else if (timeNow.isBefore(moment(timings.Asr, "hh:mm")) && timeNow.isAfter(moment(timings.Maghrib, "hh:mm"))) {
+        else if (timeNow.isBefore(MaghribTime) && timeNow.isAfter(AsrTime)) {
             prayerIndex = 3;
         }
-        else if (timeNow.isBefore(moment(timings.Maghrib, "hh:mm")) && timeNow.isAfter(moment(timings.Isha, "hh:mm"))) {
+        else if (timeNow.isBefore(IshaTime) && timeNow.isAfter(MaghribTime)) {
             prayerIndex = 4;
         }
         else {
