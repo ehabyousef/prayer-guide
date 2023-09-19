@@ -159,6 +159,7 @@ const Home = () => {
                                 id="city-celect"
                                 className="form-select form-select-lg mb-3 bg-transparent text-white text-start"
                                 style={{ minWidth: "200px" }} aria-label="Large select example">
+                                <option selected>select city</option>
                                 {avalibleCities.map((city, ind) => {
                                     return (
                                         <option style={{ background: "#7f4f24" }} value={city.apiName} key={ind} >{city.dispName}</option>
