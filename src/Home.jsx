@@ -132,6 +132,7 @@ const Home = () => {
         return () => {
             clearInterval(interval)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timings, selectedCity])
     useEffect(() => {
         getApiTimings(countryValue, cityValue);
