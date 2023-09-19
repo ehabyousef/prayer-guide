@@ -132,14 +132,15 @@ const Home = () => {
         return () => {
             clearInterval(interval)
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timings, selectedCity])
     useEffect(() => {
         getApiTimings(countryValue, cityValue);
         setdate(moment().format("MMM Do YYYY | h:mm a"));
         localStorage.setItem("countryvalue", countryValue);
         localStorage.setItem("cityvalue", cityValue);
-    }, [cityValue, countryValue, getApiTimings]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cityValue, countryValue]);
     return (
         <>
             <div className="container" style={{ height: "65vh" }}>
