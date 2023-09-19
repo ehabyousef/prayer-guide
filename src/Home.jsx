@@ -8,8 +8,11 @@ const Home = () => {
     const [selectedCity, setselectedCity] = useState(
         localStorage.getItem("selectedCity") || "القاهرة"
     );
-    const [countryValue, setcountryValue] = useState("EG")
-    const [cityValue, setcityValue] = useState("Cairo")
+    const [countryValue, setcountryValue] = useState(
+        localStorage.getItem("countryvalue") || "EG"
+
+    )
+    const [cityValue, setcityValue] = useState(localStorage.getItem("cityvalue") || "Cairo")
     const [date, setdate] = useState("")
     const [nextPrayer, setnextPrayer] = useState(1)
     const [remainingtime, setremainingtime] = useState("")
@@ -134,6 +137,8 @@ const Home = () => {
     useEffect(() => {
         getApiTimings(countryValue, cityValue);
         setdate(moment().format("MMM Do YYYY | h:mm a"));
+        localStorage.setItem("countryvalue", countryValue);
+        localStorage.setItem("cityvalue", cityValue);
     }, [cityValue, countryValue]);
     return (
         <>
