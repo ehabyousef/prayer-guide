@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
     const [timings, settimings] = useState({})
-    const [selectedCity, setselectedCity] = useState("القاهرة")
+    const [selectedCity, setselectedCity] = useState(
+        localStorage.getItem("selectedCity") || "القاهرة"
+    );
     const [countryValue, setcountryValue] = useState("EG")
     const [cityValue, setcityValue] = useState("Cairo")
     const [date, setdate] = useState("")
@@ -121,6 +123,7 @@ const Home = () => {
 
     }
     useEffect(() => {
+        localStorage.setItem("selectedCity", selectedCity);
         const interval = setInterval(() => {
             counterTimer();
         }, 1000);
