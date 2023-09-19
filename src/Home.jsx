@@ -4,7 +4,7 @@ import 'moment/locale/ar';
 import { useEffect, useState } from "react";
 
 const Home = () => {
-    const [timings, settimings] = useState([])
+    const [timings, settimings] = useState({})
     const [selectedCity, setselectedCity] = useState("القاهرة")
     const [countryValue, setcountryValue] = useState("EG")
     const [cityValue, setcityValue] = useState("Cairo")
@@ -84,7 +84,6 @@ const Home = () => {
     const counterTimer = () => {
         let prayerIndex = 2;
         const timeNow = moment();
-
         if (timeNow.isBefore(moment(timings.Fajr, "hh:mm")) && timeNow.isAfter(moment(timings.Dhuhr, "hh:mm"))) {
             prayerIndex = 1;
         } else if (timeNow.isBefore(moment(timings.Dhuhr, "hh:mm")) && timeNow.isAfter(moment(timings.Asr, "hh:mm"))) {
@@ -112,8 +111,8 @@ const Home = () => {
         }
         const durationRemaining = moment.duration(remainingTime)
         setremainingtime(`${durationRemaining.seconds()} : ${durationRemaining.minutes()}  : ${durationRemaining.hours()}`)
-        console.log(durationRemaining);
-        console.log(remainingtime);
+        // console.log(durationRemaining);
+        // console.log(remainingtime);
     }
     useEffect(() => {
         const interval = setInterval(() => {
