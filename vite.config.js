@@ -6,12 +6,11 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
       manifest: {
-        name: "My Awesome App",
-        short_name: "MyApp",
-        description: "My Awesome App description",
-        theme_color: "#ffffff",
+        name: "Prayer Guide",
+        short_name: "PG",
+        description: "Prayer Guide description",
+        theme_color: "#f69435",
         icons: [
           {
             src: "pwa-192x192.png",
