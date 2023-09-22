@@ -1,8 +1,41 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Project Title
 
-Currently, two official plugins are available:
+This program shows us prayer times in different Arab cities
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Demo
+
+https://silly-squirrel-b16c62.netlify.app
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/ehabyousef/prayer-guide
+```
+
+Go to the project directory
+
+```bash
+  cd prayer-guide
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+## 🛠 Skills
+React(vite), API,CSS
+
+## 🔗 Links
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/ehabyousef)
